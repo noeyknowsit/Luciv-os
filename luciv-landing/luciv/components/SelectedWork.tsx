@@ -25,23 +25,45 @@ export default function SelectedWork() {
 
         <div className="mt-14 flex flex-col gap-4 md:mt-16 md:gap-4">
           {groups.map((group, i) => {
-            const [large, ...small] = group;
-            return (
-              <Reveal key={i} delayMs={i * 80}>
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-4">
-                  {large && (
+            // A group of 3 uses the asymmetric editorial layout: one large
+            // block plus two stacked small ones. A group of 1 or 2 (e.g.
+            // the current lineup) renders as even-height columns instead —
+            // stretching a single project into the "large" slot would
+            // leave it looking squat, and an empty stacked column would
+            // leave a visible gap.
+            if (group.length >= 3) {
+              const [large, ...small] = group;
+              return (
+                <Reveal key={i} delayMs={i * 80}>
+                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-4">
                     <ProjectCard
                       project={large}
                       className="min-h-[340px] md:row-span-2 md:min-h-full"
                     />
-                  )}
-                  {small.length > 0 && (
                     <div className="grid grid-cols-1 gap-4">
                       {small.map((project) => (
                         <ProjectCard key={project.slug} project={project} />
                       ))}
                     </div>
-                  )}
+                  </div>
+                </Reveal>
+              );
+            }
+
+            return (
+              <Reveal key={i} delayMs={i * 80}>
+                <div
+                  className={`grid grid-cols-1 gap-4 md:gap-4 ${
+                    group.length === 2 ? "md:grid-cols-2" : ""
+                  }`}
+                >
+                  {group.map((project) => (
+                    <ProjectCard
+                      key={project.slug}
+                      project={project}
+                      className="min-h-[340px] md:min-h-[420px]"
+                    />
+                  ))}
                 </div>
               </Reveal>
             );

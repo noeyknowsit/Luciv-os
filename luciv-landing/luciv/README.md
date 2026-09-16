@@ -21,9 +21,15 @@ Open http://localhost:3000.
    with your real Calendly / Cal.com link. It's used by every "Book a
    call" / "Schedule a call" button on the page.
 3. **Instagram + email** — same file, `instagramUrl` and `email`.
-4. **Portfolio content** — `lib/projects.ts` holds the three Selected
-   Work entries (Ceramic, Box & Ship, Hilton Granite Park). Edit,
-   reorder, or add more there.
+4. **Contact form** — the contact section at the bottom of the page has
+   a real lead form (business name, name, email, phone). It needs
+   somewhere to send submissions since there's no backend: create a
+   free form at [formspree.io](https://formspree.io) and paste the
+   endpoint into `contactFormEndpoint` in `lib/config.ts`. Until you do,
+   submissions will show an error instead of sending.
+5. **Portfolio content** — `lib/projects.ts` holds the Selected Work
+   entries (currently Ceramic and Box & Ship). Edit, reorder, or add
+   more there.
 
 ## Deploy to Vercel
 

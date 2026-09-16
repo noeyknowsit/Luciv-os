@@ -36,14 +36,4 @@ export const projects: Project[] = [
     video: "/work/box-and-ship/clip.mp4",
     size: "small",
   },
-  {
-    slug: "hilton-granite-park",
-    client: "Hilton Granite Park",
-    industry: "Hospitality",
-    description:
-      "On-site content capturing the property, service and guest experience.",
-    cover: "/work/hilton-granite-park/cover.jpg",
-    video: "/work/hilton-granite-park/clip.mp4",
-    size: "small",
-  },
 ];

@@ -11,4 +11,8 @@ export const siteConfig = {
   instagramHandle: "@luciv",
   email: "hello@luciv.co",
   location: "Dallas–Fort Worth",
+  // Where the contact form submits to. Formspree works with zero backend
+  // code — create a form at formspree.io and paste its endpoint here.
+  // Until this is a real endpoint, the form will show an error on submit.
+  contactFormEndpoint: "https://formspree.io/f/your-form-id",
 };
