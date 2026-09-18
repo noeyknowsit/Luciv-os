@@ -1,8 +1,22 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 
 type Status = "idle" | "submitting" | "success" | "error";
+
+type FormValues = {
+  businessName: string;
+  name: string;
+  email: string;
+  phone: string;
+};
+
+const EMPTY_FORM: FormValues = {
+  businessName: "",
+  name: "",
+  email: "",
+  phone: "",
+};
 
 const fieldClass =
   "w-full border-0 border-b border-line bg-transparent py-4 text-base text-paper placeholder-paper/35 outline-none transition-colors duration-300 focus:border-paper";
@@ -12,19 +26,31 @@ const labelClass = "text-xs font-medium uppercase tracking-wide3 text-steel";
 const SUCCESS_MESSAGE =
   "Thanks — your inquiry has been sent. We\u2019ll be in touch soon.";
 const ERROR_MESSAGE = "Something went wrong. Please try again.";
+const VALIDATION_MESSAGE = "Fill in your name and email, then try again.";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
+  // Every input below is a controlled field driven by this object, so
+  // there's exactly one source of truth: what's on screen is always
+  // what validation and submission read. No FormData, no name-attribute
+  // matching, nothing that can silently drift out of sync.
+  const [values, setValues] = useState<FormValues>(EMPTY_FORM);
+
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = event.target;
+    setValues((prev) => ({ ...prev, [name]: value }));
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = event.currentTarget;
-    const data = new FormData(form);
 
-    const name = String(data.get("name") || "").trim();
-    const email = String(data.get("email") || "").trim();
+    // Validate straight from current state, trimmed. This runs before
+    // anything else touches `values`, so the fields are never cleared
+    // ahead of this check — only a successful submit resets them.
+    const name = values.name.trim();
+    const email = values.email.trim();
 
-    if (!name || !email) {
+    if (name === "" || email === "") {
       setStatus("error");
       return;
     }
@@ -33,21 +59,21 @@ export default function ContactForm() {
 
     const payload = {
       name,
-      business: String(data.get("businessName") || "").trim(),
+      business: values.businessName.trim(),
       email,
-      phone: String(data.get("phone") || "").trim(),
+      phone: values.phone.trim(),
       message: "",
     };
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("/api/inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
 
       if (response.ok) {
-        form.reset();
+        setValues(EMPTY_FORM);
         setStatus("success");
       } else {
         setStatus("error");
@@ -56,6 +82,9 @@ export default function ContactForm() {
       setStatus("error");
     }
   }
+
+  const isValidationError =
+    status === "error" && (values.name.trim() === "" || values.email.trim() === "");
 
   return (
     <form onSubmit={handleSubmit} noValidate className="w-full">
@@ -72,6 +101,8 @@ export default function ContactForm() {
             type="text"
             autoComplete="organization"
             placeholder="Your business"
+            value={values.businessName}
+            onChange={handleChange}
             disabled={status === "submitting"}
             className={`${fieldClass} mt-2`}
           />
@@ -88,6 +119,8 @@ export default function ContactForm() {
             required
             autoComplete="name"
             placeholder="Your name"
+            value={values.name}
+            onChange={handleChange}
             disabled={status === "submitting"}
             className={`${fieldClass} mt-2`}
           />
@@ -105,6 +138,8 @@ export default function ContactForm() {
             autoComplete="email"
             inputMode="email"
             placeholder="you@business.com"
+            value={values.email}
+            onChange={handleChange}
             disabled={status === "submitting"}
             className={`${fieldClass} mt-2`}
           />
@@ -121,6 +156,8 @@ export default function ContactForm() {
             autoComplete="tel"
             inputMode="tel"
             placeholder="(000) 000-0000"
+            value={values.phone}
+            onChange={handleChange}
             disabled={status === "submitting"}
             className={`${fieldClass} mt-2`}
           />
@@ -131,7 +168,9 @@ export default function ContactForm() {
         <p className="mt-6 text-sm text-paper/80">{SUCCESS_MESSAGE}</p>
       )}
       {status === "error" && (
-        <p className="mt-6 text-sm text-paper/80">{ERROR_MESSAGE}</p>
+        <p className="mt-6 text-sm text-paper/80">
+          {isValidationError ? VALIDATION_MESSAGE : ERROR_MESSAGE}
+        </p>
       )}
 
       <button

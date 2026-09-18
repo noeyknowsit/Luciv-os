@@ -22,7 +22,7 @@ Open http://localhost:3000.
    call" / "Schedule a call" button on the page.
 3. **Instagram + email** — same file, `instagramUrl` and `email`.
 4. **Contact form** — the contact section at the bottom of the page
-   posts to `app/api/contact/route.ts`, a small server-side route that
+   posts to `app/api/inquiry/route.ts`, a small server-side route that
    forwards submissions to your Google Apps Script web app. This avoids
    CORS issues that come from posting to Apps Script directly from the
    browser. The endpoint URL is set in that file; update it there if
