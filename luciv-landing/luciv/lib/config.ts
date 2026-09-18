@@ -6,7 +6,7 @@ export const siteConfig = {
   name: "Luciv",
   tagline: "Content that drives growth",
   // Replace with your real Calendly / Cal.com scheduling link.
-  bookingUrl: "https://cal.com/luciv/intro-call",
+  bookingUrl: "https://calendar.app.google/vXP7aGS62YrzJchC7",
   instagramUrl: "https://instagram.com/luciv",
   instagramHandle: "@luciv",
   email: "hello@luciv.co",

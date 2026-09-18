@@ -7,14 +7,11 @@ export default function WhyLuciv() {
         <Reveal>
           <div className="max-w-2xl">
             <h2 className="font-display text-4xl font-medium leading-tight text-paper md:text-5xl">
-              More than someone with a camera.
+              Built Around What Makes You Different.
             </h2>
             <p className="mt-6 text-base leading-relaxed text-paper/70 md:text-lg">
-              Luciv combines production with strategy. The goal was never
-              just attractive footage &mdash; it&rsquo;s content with a
-              reason behind it: to get attention, explain what your
-              business does, build familiarity, show expertise, and
-              establish trust.
+              We turn your strengths, story, expertise, and personality into
+              content that shows people why they should choose you.
             </p>
           </div>
         </Reveal>

@@ -2,16 +2,19 @@ import Reveal from "./Reveal";
 
 const capabilities = [
   {
-    label: "Content production",
-    description: "High-quality short-form and commercial video.",
+    label: "Strategy & messaging",
+    description:
+      "We develop the concepts, hooks, scripts, and calls to action behind every piece of content.",
   },
   {
-    label: "Content strategy",
-    description: "Concepts, hooks and creative direction built around the business.",
+    label: "Production & creative",
+    description:
+      "We plan, shoot, and edit short-form content and ads built specifically for your business.",
   },
   {
-    label: "Ongoing content",
-    description: "Consistent content creation for businesses that need to stay visible.",
+    label: "Testing & optimization",
+    description:
+      "We test creative, learn what resonates, and use those insights to guide what we make next.",
   },
 ];
 

@@ -27,30 +27,14 @@ export default function Navigation() {
           </span>
         </Link>
 
-        <div className="flex items-center gap-8">
-          <div className="hidden items-center gap-8 md:flex">
-            <a
-              href="#work"
-              className="text-sm text-paper/80 transition-colors duration-300 hover:text-paper"
-            >
-              Work
-            </a>
-            <a
-              href="#what-we-do"
-              className="text-sm text-paper/80 transition-colors duration-300 hover:text-paper"
-            >
-              What we do
-            </a>
-          </div>
-          <a
-            href={siteConfig.bookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-sm border border-line-strong px-4 py-2 text-sm text-paper transition-colors duration-300 hover:border-paper"
-          >
-            Book a call
-          </a>
-        </div>
+        <a
+          href={siteConfig.bookingUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-sm border border-line-strong px-4 py-2 text-sm text-paper transition-colors duration-300 hover:border-paper"
+        >
+          Book a call
+        </a>
       </nav>
     </header>
   );
