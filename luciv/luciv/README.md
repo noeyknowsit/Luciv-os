@@ -21,12 +21,12 @@ Open http://localhost:3000.
    with your real Calendly / Cal.com link. It's used by every "Book a
    call" / "Schedule a call" button on the page.
 3. **Instagram + email** — same file, `instagramUrl` and `email`.
-4. **Contact form** — the contact section at the bottom of the page has
-   a real lead form (business name, name, email, phone). It needs
-   somewhere to send submissions since there's no backend: create a
-   free form at [formspree.io](https://formspree.io) and paste the
-   endpoint into `contactFormEndpoint` in `lib/config.ts`. Until you do,
-   submissions will show an error instead of sending.
+4. **Contact form** — the contact section at the bottom of the page
+   posts to `app/api/inquiry/route.ts`, a small server-side route that
+   forwards submissions to your Google Apps Script web app. This avoids
+   CORS issues that come from posting to Apps Script directly from the
+   browser. The endpoint URL is set in that file; update it there if
+   you ever redeploy the Apps Script to a new URL.
 5. **Portfolio content** — `lib/projects.ts` holds the Selected Work
    entries (currently Ceramic and Box & Ship). Edit, reorder, or add
    more there.
