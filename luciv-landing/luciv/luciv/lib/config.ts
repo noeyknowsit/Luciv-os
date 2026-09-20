@@ -7,8 +7,8 @@ export const siteConfig = {
   tagline: "Content that drives growth",
   // Replace with your real Calendly / Cal.com scheduling link.
   bookingUrl: "https://calendar.app.google/vXP7aGS62YrzJchC7",
-  instagramUrl: "https://instagram.com/luciv",
-  instagramHandle: "@luciv",
-  email: "hello@luciv.co",
+  instagramUrl: "https://instagram.com/lucivcreative",
+  instagramHandle: "@lucivcreative",
+  email: "noey@lucivcreative.com",
   location: "Dallas–Fort Worth",
 };

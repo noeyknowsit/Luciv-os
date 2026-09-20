@@ -12,6 +12,7 @@ const config: Config = {
         panel: "#121211",
         paper: "#f5f4f2",
         steel: "#8a8a85",
+        silver: "#c9c7c4",
         line: "rgba(245, 244, 242, 0.12)",
         "line-strong": "rgba(245, 244, 242, 0.22)",
       },

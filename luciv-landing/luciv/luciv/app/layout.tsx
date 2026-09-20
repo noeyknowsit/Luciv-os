@@ -23,7 +23,7 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  metadataBase: new URL("https://luciv.co"),
+  metadataBase: new URL("https://lucivcreative.com"),
   icons: {
     icon: "/favicon.png",
   },

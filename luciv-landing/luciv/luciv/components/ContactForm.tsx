@@ -176,7 +176,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="mt-9 w-full rounded-sm bg-paper px-6 py-4 text-sm font-medium uppercase tracking-wide2 text-ink transition-transform duration-300 ease-editorial hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100 md:mt-10 md:w-auto"
+        className="mt-9 w-full rounded-sm bg-paper px-6 py-4 text-sm font-medium uppercase tracking-wide2 text-ink transition-all duration-300 ease-editorial hover:scale-[1.01] hover:bg-silver disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100 disabled:hover:bg-paper md:mt-10 md:w-auto"
       >
         {status === "submitting" ? "Sending\u2026" : "Send inquiry \u2192"}
       </button>

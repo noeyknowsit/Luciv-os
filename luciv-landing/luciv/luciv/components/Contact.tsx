@@ -38,7 +38,7 @@ export default function Contact() {
                   href={siteConfig.bookingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block rounded-sm bg-paper px-7 py-4 text-sm font-medium uppercase tracking-wide2 text-ink transition-transform duration-300 ease-editorial hover:scale-[1.02]"
+                  className="inline-block rounded-sm bg-paper px-7 py-4 text-sm font-medium uppercase tracking-wide2 text-ink transition-all duration-300 ease-editorial hover:scale-[1.02] hover:bg-silver"
                 >
                   Book a call →
                 </a>

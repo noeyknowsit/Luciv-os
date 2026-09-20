@@ -31,7 +31,7 @@ export default function Navigation() {
           href={siteConfig.bookingUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-sm border border-line-strong px-4 py-2 text-sm text-paper transition-colors duration-300 hover:border-paper"
+          className="rounded-sm border border-line-strong px-4 py-2 text-sm text-paper transition-colors duration-300 hover:border-silver hover:text-silver"
         >
           Book a call
         </a>
