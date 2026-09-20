@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { siteConfig } from "@/lib/config";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -12,33 +11,47 @@ const labelClass = "text-xs font-medium uppercase tracking-wide3 text-steel";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (status === "submitting") return;
     const form = event.currentTarget;
     const data = new FormData(form);
+    const payload = {
+      name: String(data.get("name") ?? "").trim(),
+      business: String(data.get("businessName") ?? "").trim(),
+      email: String(data.get("email") ?? "").trim(),
+      phone: String(data.get("phone") ?? "").trim(),
+      message: "",
+    };
 
-    if (!data.get("name") || !data.get("email")) {
+    if (!payload.name || !payload.email) {
+      setErrorMessage("Fill in your name and email, then try again.");
       setStatus("error");
       return;
     }
 
     setStatus("submitting");
+    setErrorMessage("");
 
     try {
-      const response = await fetch(siteConfig.contactFormEndpoint, {
+      const response = await fetch("/api/inquiry", {
         method: "POST",
-        headers: { Accept: "application/json" },
-        body: data,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
 
-      if (response.ok) {
+      const result = await response.json();
+      if (response.ok && result.ok === true) {
         setStatus("success");
         form.reset();
       } else {
+        setErrorMessage("Something went wrong. Please try again.");
         setStatus("error");
       }
     } catch {
+      setErrorMessage("Something went wrong. Please try again.");
       setStatus("error");
     }
   }
@@ -124,7 +137,7 @@ export default function ContactForm() {
 
       {status === "error" && (
         <p className="mt-6 text-sm text-paper/60">
-          Fill in your name and email, then try again.
+          {errorMessage}
         </p>
       )}
 
